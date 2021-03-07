@@ -1,3 +1,11 @@
+## [2.0.0-dev.2] - 04/03/21
+
+* Customize 'baseUrl' to host own images server
+
+## [2.0.0-dev.1] - 04/03/21
+
+* Forked and updated dependencies
+
 ## [1.0.6] - 11/05/19
 
 * Update pubspec versions

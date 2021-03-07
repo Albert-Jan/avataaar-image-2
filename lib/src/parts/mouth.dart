@@ -1,6 +1,6 @@
-import 'package:avataaar_image/src/converter.dart';
-import 'package:avataaar_image/src/parts/parts.dart';
-import 'package:avataaar_image/src/pieces.dart';
+import 'package:avataaar_image_2/src/converter.dart';
+import 'package:avataaar_image_2/src/parts/parts.dart';
+import 'package:avataaar_image_2/src/pieces.dart';
 
 class Mouth implements AvataaarPart {
   Mouth._({this.mouthType});

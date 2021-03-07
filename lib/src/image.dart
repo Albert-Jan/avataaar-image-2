@@ -1,11 +1,12 @@
-import 'package:avataaar_image/src/api.dart';
-import 'package:avataaar_image/src/avataaar.dart';
+import 'package:avataaar_image_2/src/api.dart';
+import 'package:avataaar_image_2/src/avataaar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 
-class AvataaarImage extends StatelessWidget with AvataaarsApi {
+class AvataaarImage extends StatelessWidget {
   AvataaarImage({
     Key key,
+    @required this.baseUrl,
     @required this.avatar,
     this.width: 64.0,
     this.placeholder,
@@ -16,12 +17,14 @@ class AvataaarImage extends StatelessWidget with AvataaarsApi {
   AvataaarImage.builder({
     Key key,
     @required this.builder,
+    @required this.baseUrl,
     @required this.avatar,
     this.width: 64.0,
   })  : this.placeholder = null,
         this.errorImage = null,
         super(key: key);
 
+  final String baseUrl;
   final Widget Function(BuildContext context, String url) builder;
   final Avataaar avatar;
   final Widget placeholder;
@@ -30,7 +33,7 @@ class AvataaarImage extends StatelessWidget with AvataaarsApi {
 
   @override
   Widget build(BuildContext context) {
-    final imageUrl = getUrl(avatar, width);
+    final imageUrl = AvataaarsApi().getUrl(baseUrl, avatar, width);
     return builder != null
         ? builder(context, imageUrl)
         : CachedNetworkImage(

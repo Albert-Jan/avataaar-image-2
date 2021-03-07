@@ -1,6 +1,6 @@
-import 'package:avataaar_image/src/converter.dart';
-import 'package:avataaar_image/src/parts/parts.dart';
-import 'package:avataaar_image/src/pieces.dart';
+import 'package:avataaar_image_2/src/converter.dart';
+import 'package:avataaar_image_2/src/parts/parts.dart';
+import 'package:avataaar_image_2/src/pieces.dart';
 
 class Clothes implements AvataaarPart {
   Clothes._({this.clotheType, this.clotheColor, this.graphicType});

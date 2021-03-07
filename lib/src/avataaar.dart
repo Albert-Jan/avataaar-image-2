@@ -1,12 +1,14 @@
 import 'dart:convert' show json;
 
-import 'package:avataaar_image/src/converter.dart';
+import 'package:avataaar_image_2/src/converter.dart';
+import 'package:flutter/foundation.dart';
 
-import '../avataaar_image.dart';
+import '../avataaar_image_2.dart';
 import 'parts/parts.dart';
 
-class Avataaar with AvataaarsApi implements AvataaarPart {
+class Avataaar implements AvataaarPart {
   Avataaar({
+    this.baseUrl,
     this.top,
     this.clothes,
     this.eyes,
@@ -17,6 +19,7 @@ class Avataaar with AvataaarsApi implements AvataaarPart {
   });
 
   Avataaar.random({
+    @required String baseUrl,
     Top top,
     Clothes clothes,
     Eyes eyes,
@@ -25,6 +28,7 @@ class Avataaar with AvataaarsApi implements AvataaarPart {
     Skin skin,
     Style style,
   }) : this(
+          baseUrl: '',
           top: top ?? Top.random,
           clothes: clothes ?? Clothes.random,
           eyes: eyes ?? Eyes.random,
@@ -34,6 +38,7 @@ class Avataaar with AvataaarsApi implements AvataaarPart {
           style: style ?? Style.random,
         );
 
+  final String baseUrl;
   final Top top;
   final Clothes clothes;
   final Eyes eyes;
@@ -42,14 +47,11 @@ class Avataaar with AvataaarsApi implements AvataaarPart {
   final Skin skin;
   final Style style;
 
-  Iterable<MapEntry<String, String>> get pieceEntries => pieces
-      .expand((it) => it?.pieces ?? [])
-      .where((it) => it != null)
-      .map(_splitEnum);
+  Iterable<MapEntry<String, String>> get pieceEntries =>
+      pieces.expand((it) => it?.pieces ?? []).where((it) => it != null).map(_splitEnum);
 
   @override
-  List<AvataaarPart> get pieces =>
-      [top, clothes, eyes, eyebrow, mouth, skin, style];
+  List<AvataaarPart> get pieces => [top, clothes, eyes, eyebrow, mouth, skin, style];
 
   MapEntry<String, String> _splitEnum<T>(T enumValue) {
     final split = enumValue.toString().split('\.');
@@ -58,10 +60,9 @@ class Avataaar with AvataaarsApi implements AvataaarPart {
 
   String toJson() => json.encode(AvataaarConverter().toMap(this));
 
-  String toUrl({double width=800}) => getUrl(this, width);
+  String toUrl({double width = 800}) => AvataaarsApi().getUrl(this.baseUrl, this, width);
 
-  static Avataaar fromJson(String value) =>
-      AvataaarConverter().fromMap(json.decode(value));
+  static Avataaar fromJson(String value) => AvataaarConverter().fromMap(json.decode(value));
 
   Avataaar copyWith({
     Top top,
@@ -97,13 +98,7 @@ class Avataaar with AvataaarsApi implements AvataaarPart {
 
   @override
   int get hashCode =>
-      top.hashCode ^
-      clothes.hashCode ^
-      eyes.hashCode ^
-      eyebrow.hashCode ^
-      mouth.hashCode ^
-      skin.hashCode ^
-      style.hashCode;
+      top.hashCode ^ clothes.hashCode ^ eyes.hashCode ^ eyebrow.hashCode ^ mouth.hashCode ^ skin.hashCode ^ style.hashCode;
 }
 
 class AvataaarConverter extends Converter<Avataaar> {

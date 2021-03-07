@@ -1,19 +1,22 @@
 import 'dart:typed_data';
 
-import 'package:avataaar_image/src/avataaar.dart';
 import 'package:http/http.dart' as http;
 
-class AvataaarsApi {
-  static const _BASE_URL = 'https://avataaars.io';
+import '../avataaar_image_2.dart';
 
-  String getUrl(Avataaar avatar, double width) {
+class AvataaarsApi {
+  static const baseUrl = 'https://avataaars.io';
+
+  AvataaarsApi();
+  
+  String getUrl(String baseUrl, Avataaar avatar, double width) {
     final params = avatar.pieceEntries.map((it) {
       final key = it.key[0].toLowerCase() + it.key.substring(1);
       return '$key=${it.value}';
     }).join('&');
-    return '$_BASE_URL/png/$width?$params';
+    return '$baseUrl/png/$width?$params';
   }
 
   Future<Uint8List> getImage(Avataaar avatar, double width) =>
-      http.get(getUrl(avatar, width)).then((it) => it.bodyBytes);
+      http.get(Uri(path: getUrl(baseUrl, avatar, width))).then((it) => it.bodyBytes);
 }

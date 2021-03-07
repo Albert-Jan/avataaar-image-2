@@ -1,4 +1,4 @@
-import 'package:avataaar_image/avataaar_image.dart';
+import 'package:avataaar_image_2/avataaar_image_2.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(AvataaarExample());
@@ -21,6 +21,7 @@ class ExampleBody extends StatefulWidget {
 }
 
 class _ExampleBodyState extends State<ExampleBody> {
+  static const String baseUrl = 'http://www.yoururl.com';
   Avataaar _avatar;
 
   @override
@@ -29,7 +30,7 @@ class _ExampleBodyState extends State<ExampleBody> {
     _randomizeAvatar();
   }
 
-  void _randomizeAvatar() => _avatar = Avataaar.random();
+  void _randomizeAvatar() => _avatar = Avataaar.random(baseUrl: baseUrl);
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +40,7 @@ class _ExampleBodyState extends State<ExampleBody> {
         Expanded(
           child: Center(
             child: AvataaarImage(
+              baseUrl: baseUrl,
               avatar: _avatar,
               errorImage: Icon(Icons.error),
               placeholder: CircularProgressIndicator(),

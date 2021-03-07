@@ -1,4 +1,4 @@
-library avataaar_image;
+library avataar_image_2;
 
 export 'src/api.dart';
 export 'src/avataaar.dart';

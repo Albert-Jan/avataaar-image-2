@@ -1,6 +1,6 @@
 # avataaar_image
 
-[![pub package](https://img.shields.io/pub/v/avataaar_image.svg)](https://pub.dartlang.org/packages/avataaar_image)
+[![pub package](https://img.shields.io/pub/v/avataaar_image_2.svg)](https://pub.dartlang.org/packages/avataaar_image_2)
 
 Flutter wrapper widget for [Avataaars](https://getavataaars.com/) API - *a free online avatar generator for anyone to make their beautiful personal avatar easily*.
 

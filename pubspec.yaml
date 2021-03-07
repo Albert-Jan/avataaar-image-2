@@ -1,7 +1,6 @@
-name: avataaar_image
+name: avataaar_image_2
 description: Fork of Flutter wrapper widget for Avataaars API allowing to generate and display avatar images.
-version: 1.0.9
-author: Tomasz Wyrowinski <tomwyr@hotmail.com>
+version: 2.0.0-dev.2
 homepage: https://github.com/Albert-Jan/avataaar-image-2/
 
 environment:
@@ -10,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cached_network_image: ^2.5.0
+  cached_network_image: ^3.0.0-nullsafety
   http: ^0.13.0
 
 dev_dependencies:
