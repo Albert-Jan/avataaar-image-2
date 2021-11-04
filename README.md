@@ -45,8 +45,8 @@ Avataaar.random(
 ```Dart
 AvataaarImage(
   avatar: avatar,
-  errorImage: Icon(Icons.error),
-  placeholder: CircularProgressIndicator(),
+  errorImage: const Icon(Icons.error),
+  placeholder: const CircularProgressIndicator(),
   width: 128.0,
 );
 

@@ -1,6 +1,6 @@
 import 'dart:math';
 
-T randomPiece<T>(List<T> pieces) {
+T? randomPiece<T>(List<T> pieces) {
   final index = Random().nextInt(pieces.length + 1) - 1;
   return index >= 0 ? pieces[index] : null;
 }

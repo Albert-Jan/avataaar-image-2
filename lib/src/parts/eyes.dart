@@ -3,9 +3,9 @@ import 'package:avataaar_image_2/src/parts/parts.dart';
 import 'package:avataaar_image_2/src/pieces.dart';
 
 class Eyes implements AvataaarPart {
-  Eyes._({this.eyeType});
+  const Eyes._({this.eyeType});
 
-  final EyeType eyeType;
+  final EyeType? eyeType;
 
   @override
   bool operator ==(Object other) =>
@@ -49,7 +49,7 @@ class Eyes implements AvataaarPart {
 
 class EyesConverter extends Converter<Eyes> {
   @override
-  Eyes fromMap(Map<String, dynamic> map) {
+  Eyes? fromMap(Map<String, dynamic>? map) {
     if (map == null) return null;
     return Eyes._(
       eyeType: enumFromJson(EyeType.values, map['eyeType']),
@@ -57,7 +57,7 @@ class EyesConverter extends Converter<Eyes> {
   }
 
   @override
-  Map<String, dynamic> toMap(Eyes value) {
+  Map<String, dynamic>? toMap(Eyes? value) {
     if (value == null) return null;
     return {'eyeType': enumToJson(value.eyeType)};
   }
