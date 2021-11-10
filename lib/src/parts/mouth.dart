@@ -3,9 +3,9 @@ import 'package:avataaar_image_2/src/parts/parts.dart';
 import 'package:avataaar_image_2/src/pieces.dart';
 
 class Mouth implements AvataaarPart {
-  Mouth._({this.mouthType});
+  const Mouth._({this.mouthType});
 
-  final MouthType mouthType;
+  final MouthType? mouthType;
 
   @override
   List get pieces => [mouthType];
@@ -49,7 +49,7 @@ class Mouth implements AvataaarPart {
 
 class MouthConverter extends Converter<Mouth> {
   @override
-  Mouth fromMap(Map<String, dynamic> map) {
+  Mouth? fromMap(Map<String, dynamic>? map) {
     if (map == null) return null;
     return Mouth._(
       mouthType: enumFromJson(MouthType.values, map['mouthType']),
@@ -57,7 +57,7 @@ class MouthConverter extends Converter<Mouth> {
   }
 
   @override
-  Map<String, dynamic> toMap(Mouth value) {
+  Map<String, dynamic>? toMap(Mouth? value) {
     if (value == null) return null;
     return {'mouthType': enumToJson(value.mouthType)};
   }

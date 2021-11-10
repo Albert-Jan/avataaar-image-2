@@ -3,9 +3,9 @@ import 'package:avataaar_image_2/src/parts/parts.dart';
 import 'package:avataaar_image_2/src/pieces.dart';
 
 class Skin implements AvataaarPart {
-  Skin._({this.skinColor});
+  const Skin._({this.skinColor});
 
-  final SkinColor skinColor;
+  final SkinColor? skinColor;
 
   @override
   List get pieces => [skinColor];
@@ -39,7 +39,7 @@ class Skin implements AvataaarPart {
 
 class SkinConverter extends Converter<Skin> {
   @override
-  Skin fromMap(Map<String, dynamic> map) {
+  Skin? fromMap(Map<String, dynamic>? map) {
     if (map == null) return null;
     return Skin._(
       skinColor: enumFromJson(SkinColor.values, map['skinColor']),
@@ -47,7 +47,7 @@ class SkinConverter extends Converter<Skin> {
   }
 
   @override
-  Map<String, dynamic> toMap(Skin value) {
+  Map<String, dynamic>? toMap(Skin? value) {
     if (value == null) return null;
     return {'skinColor': enumToJson(value.skinColor)};
   }

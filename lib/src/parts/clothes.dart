@@ -3,11 +3,11 @@ import 'package:avataaar_image_2/src/parts/parts.dart';
 import 'package:avataaar_image_2/src/pieces.dart';
 
 class Clothes implements AvataaarPart {
-  Clothes._({this.clotheType, this.clotheColor, this.graphicType});
+  const Clothes._({this.clotheType, this.clotheColor, this.graphicType});
 
-  final ClotheType clotheType;
-  final ClotheColor clotheColor;
-  final GraphicType graphicType;
+  final ClotheType? clotheType;
+  final ClotheColor? clotheColor;
+  final GraphicType? graphicType;
 
   @override
   List get pieces => [clotheType, clotheColor, graphicType];
@@ -56,10 +56,14 @@ class Clothes implements AvataaarPart {
   static Clothes shirtVNeck(ClotheColor clotheColor) =>
       Clothes._(clotheType: ClotheType.ShirtVNeck, clotheColor: clotheColor);
 
-  static Clothes get random {
-    final clotheType = randomPiece(ClotheType.values);
-    final clotheColor = randomPiece(ClotheColor.values);
-    final graphicType = randomPiece(GraphicType.values);
+  static Clothes? get random {
+    final clotheType =
+        randomPiece(ClotheType.values) ?? ClotheType.values.first;
+    final clotheColor =
+        randomPiece(ClotheColor.values) ?? ClotheColor.values.first;
+    final graphicType =
+        randomPiece(GraphicType.values) ?? GraphicType.values.first;
+
     switch (clotheType) {
       case ClotheType.BlazerShirt:
         return blazerShirt;
@@ -87,8 +91,8 @@ class Clothes implements AvataaarPart {
 
 class ClothesConverter extends Converter<Clothes> {
   @override
-  Clothes fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
+  Clothes? fromMap(Map<String, dynamic>? map) {
+    if (map == null || map.isEmpty) return null;
     return Clothes._(
       clotheType: enumFromJson(ClotheType.values, map['clotheType']),
       clotheColor: enumFromJson(ClotheColor.values, map['clotheColor']),
@@ -97,8 +101,9 @@ class ClothesConverter extends Converter<Clothes> {
   }
 
   @override
-  Map<String, dynamic> toMap(Clothes value) {
+  Map<String, dynamic>? toMap(Clothes? value) {
     if (value == null) return null;
+
     return {
       'clotheType': enumToJson(value.clotheType),
       'clotheColor': enumToJson(value.clotheColor),
